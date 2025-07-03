@@ -6,12 +6,12 @@ import (
 	"net"
 	"sync"
 
-	pb "github.com/MustangThumbi/backend/genproto/tictactoe"
+	pb "github.com/MustangThumbi/tictactoe/genproto/tictactoe"
 	"google.golang.org/grpc"
 )
 
 type server struct {
-	pb.UnimplementedTicTacToeServiceServer
+	pb.UnimplementedTictactoeServer
 	mu    sync.Mutex
 	games map[string]*Game
 }
@@ -132,7 +132,7 @@ func main() {
 	}
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterTicTacToeServiceServer(grpcServer, &server{
+	pb.RegisterTictactoeServer(grpcServer, &server{
 		games: make(map[string]*Game),
 	})
 
