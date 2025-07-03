@@ -1,0 +1,35 @@
+syntax="proto3";
+
+option go_package = "github.com/MustangThumbi/backend";
+
+service tictactoe {
+  rpc CreateGame (CreateGameRequest) returns (CreateGameResponse);
+  rpc MakeMove (MakeMoveRequest) returns (MakeMoveResponse);
+  rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
+}
+
+message CreateGameRequest {
+  string player_x = 1;
+  string player_o= 2;
+}
+message CreateGameResponse {
+  string game_id = 1;
+}
+message MakeMoveRequest {
+  string game_id = 1;
+  string player = 2; // "X" or "O"
+  int32 row = 3;
+  int32 col = 4;
+}
+message MakeMoveResponse {
+    string status = 1; // "success" or "error"
+    repeated string board = 2; // flat ["", "", "", "", "", "", "", "", ""]
+}
+message GetGameStateRequest {
+  string game_id = 1;
+}
+message GetGameStateResponse {
+  string status = 1; 
+  repeated string board = 2; 
+}
+   
