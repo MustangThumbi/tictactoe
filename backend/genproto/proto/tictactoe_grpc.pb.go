@@ -2,9 +2,9 @@
 // versions:
 // - protoc-gen-go-grpc v1.5.1
 // - protoc             v3.21.12
-// source: tictactoe.proto
+// source: proto/tictactoe.proto
 
-package backend
+package tictactoe
 
 import (
 	context "context"
@@ -19,9 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Tictactoe_CreateGame_FullMethodName   = "/tictactoe/CreateGame"
-	Tictactoe_MakeMove_FullMethodName     = "/tictactoe/MakeMove"
-	Tictactoe_GetGameState_FullMethodName = "/tictactoe/GetGameState"
+	Tictactoe_CreateGame_FullMethodName   = "/tictactoe.Tictactoe/CreateGame"
+	Tictactoe_MakeMove_FullMethodName     = "/tictactoe.Tictactoe/MakeMove"
+	Tictactoe_GetGameState_FullMethodName = "/tictactoe.Tictactoe/GetGameState"
 )
 
 // TictactoeClient is the client API for Tictactoe service.
@@ -176,7 +176,7 @@ func _Tictactoe_GetGameState_Handler(srv interface{}, ctx context.Context, dec f
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Tictactoe_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "tictactoe",
+	ServiceName: "tictactoe.Tictactoe",
 	HandlerType: (*TictactoeServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
@@ -193,5 +193,5 @@ var Tictactoe_ServiceDesc = grpc.ServiceDesc{
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "tictactoe.proto",
+	Metadata: "proto/tictactoe.proto",
 }

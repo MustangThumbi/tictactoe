@@ -2,11 +2,12 @@
 // versions:
 // 	protoc-gen-go v1.36.6
 // 	protoc        v3.21.12
-// source: tictactoe.proto
+// source: proto/tictactoe.proto
 
-package backend
+package tictactoe
 
 import (
+	_ "google.golang.org/genproto/googleapis/api/annotations"
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
 	reflect "reflect"
@@ -31,7 +32,7 @@ type CreateGameRequest struct {
 
 func (x *CreateGameRequest) Reset() {
 	*x = CreateGameRequest{}
-	mi := &file_tictactoe_proto_msgTypes[0]
+	mi := &file_proto_tictactoe_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +44,7 @@ func (x *CreateGameRequest) String() string {
 func (*CreateGameRequest) ProtoMessage() {}
 
 func (x *CreateGameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tictactoe_proto_msgTypes[0]
+	mi := &file_proto_tictactoe_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +57,7 @@ func (x *CreateGameRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGameRequest.ProtoReflect.Descriptor instead.
 func (*CreateGameRequest) Descriptor() ([]byte, []int) {
-	return file_tictactoe_proto_rawDescGZIP(), []int{0}
+	return file_proto_tictactoe_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *CreateGameRequest) GetPlayerX() string {
@@ -82,7 +83,7 @@ type CreateGameResponse struct {
 
 func (x *CreateGameResponse) Reset() {
 	*x = CreateGameResponse{}
-	mi := &file_tictactoe_proto_msgTypes[1]
+	mi := &file_proto_tictactoe_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -94,7 +95,7 @@ func (x *CreateGameResponse) String() string {
 func (*CreateGameResponse) ProtoMessage() {}
 
 func (x *CreateGameResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tictactoe_proto_msgTypes[1]
+	mi := &file_proto_tictactoe_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +108,7 @@ func (x *CreateGameResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CreateGameResponse.ProtoReflect.Descriptor instead.
 func (*CreateGameResponse) Descriptor() ([]byte, []int) {
-	return file_tictactoe_proto_rawDescGZIP(), []int{1}
+	return file_proto_tictactoe_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *CreateGameResponse) GetGameId() string {
@@ -129,7 +130,7 @@ type MakeMoveRequest struct {
 
 func (x *MakeMoveRequest) Reset() {
 	*x = MakeMoveRequest{}
-	mi := &file_tictactoe_proto_msgTypes[2]
+	mi := &file_proto_tictactoe_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -141,7 +142,7 @@ func (x *MakeMoveRequest) String() string {
 func (*MakeMoveRequest) ProtoMessage() {}
 
 func (x *MakeMoveRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tictactoe_proto_msgTypes[2]
+	mi := &file_proto_tictactoe_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -154,7 +155,7 @@ func (x *MakeMoveRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MakeMoveRequest.ProtoReflect.Descriptor instead.
 func (*MakeMoveRequest) Descriptor() ([]byte, []int) {
-	return file_tictactoe_proto_rawDescGZIP(), []int{2}
+	return file_proto_tictactoe_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *MakeMoveRequest) GetGameId() string {
@@ -187,7 +188,7 @@ func (x *MakeMoveRequest) GetCol() int32 {
 
 type MakeMoveResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"` // "success" or "error"
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"` // "success", "error", "ongoing", "X_wins", "O_wins", "draw"
 	Board         []string               `protobuf:"bytes,2,rep,name=board,proto3" json:"board,omitempty"`   // flat ["", "", "", "", "", "", "", "", ""]
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -195,7 +196,7 @@ type MakeMoveResponse struct {
 
 func (x *MakeMoveResponse) Reset() {
 	*x = MakeMoveResponse{}
-	mi := &file_tictactoe_proto_msgTypes[3]
+	mi := &file_proto_tictactoe_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -207,7 +208,7 @@ func (x *MakeMoveResponse) String() string {
 func (*MakeMoveResponse) ProtoMessage() {}
 
 func (x *MakeMoveResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tictactoe_proto_msgTypes[3]
+	mi := &file_proto_tictactoe_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -220,7 +221,7 @@ func (x *MakeMoveResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MakeMoveResponse.ProtoReflect.Descriptor instead.
 func (*MakeMoveResponse) Descriptor() ([]byte, []int) {
-	return file_tictactoe_proto_rawDescGZIP(), []int{3}
+	return file_proto_tictactoe_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *MakeMoveResponse) GetStatus() string {
@@ -246,7 +247,7 @@ type GetGameStateRequest struct {
 
 func (x *GetGameStateRequest) Reset() {
 	*x = GetGameStateRequest{}
-	mi := &file_tictactoe_proto_msgTypes[4]
+	mi := &file_proto_tictactoe_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -258,7 +259,7 @@ func (x *GetGameStateRequest) String() string {
 func (*GetGameStateRequest) ProtoMessage() {}
 
 func (x *GetGameStateRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_tictactoe_proto_msgTypes[4]
+	mi := &file_proto_tictactoe_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -271,7 +272,7 @@ func (x *GetGameStateRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGameStateRequest.ProtoReflect.Descriptor instead.
 func (*GetGameStateRequest) Descriptor() ([]byte, []int) {
-	return file_tictactoe_proto_rawDescGZIP(), []int{4}
+	return file_proto_tictactoe_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *GetGameStateRequest) GetGameId() string {
@@ -283,7 +284,7 @@ func (x *GetGameStateRequest) GetGameId() string {
 
 type GetGameStateResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+	Status        string                 `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"` // "ongoing", "X_wins", "O_wins", "draw"
 	Board         []string               `protobuf:"bytes,2,rep,name=board,proto3" json:"board,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -291,7 +292,7 @@ type GetGameStateResponse struct {
 
 func (x *GetGameStateResponse) Reset() {
 	*x = GetGameStateResponse{}
-	mi := &file_tictactoe_proto_msgTypes[5]
+	mi := &file_proto_tictactoe_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -303,7 +304,7 @@ func (x *GetGameStateResponse) String() string {
 func (*GetGameStateResponse) ProtoMessage() {}
 
 func (x *GetGameStateResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_tictactoe_proto_msgTypes[5]
+	mi := &file_proto_tictactoe_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -316,7 +317,7 @@ func (x *GetGameStateResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetGameStateResponse.ProtoReflect.Descriptor instead.
 func (*GetGameStateResponse) Descriptor() ([]byte, []int) {
-	return file_tictactoe_proto_rawDescGZIP(), []int{5}
+	return file_proto_tictactoe_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *GetGameStateResponse) GetStatus() string {
@@ -333,11 +334,11 @@ func (x *GetGameStateResponse) GetBoard() []string {
 	return nil
 }
 
-var File_tictactoe_proto protoreflect.FileDescriptor
+var File_proto_tictactoe_proto protoreflect.FileDescriptor
 
-const file_tictactoe_proto_rawDesc = "" +
+const file_proto_tictactoe_proto_rawDesc = "" +
 	"\n" +
-	"\x0ftictactoe.proto\"I\n" +
+	"\x15proto/tictactoe.proto\x12\ttictactoe\x1a\x1cgoogle/api/annotations.proto\"I\n" +
 	"\x11CreateGameRequest\x12\x19\n" +
 	"\bplayer_x\x18\x01 \x01(\tR\aplayerX\x12\x19\n" +
 	"\bplayer_o\x18\x02 \x01(\tR\aplayerO\"-\n" +
@@ -355,41 +356,41 @@ const file_tictactoe_proto_rawDesc = "" +
 	"\agame_id\x18\x01 \x01(\tR\x06gameId\"D\n" +
 	"\x14GetGameStateResponse\x12\x16\n" +
 	"\x06status\x18\x01 \x01(\tR\x06status\x12\x14\n" +
-	"\x05board\x18\x02 \x03(\tR\x05board2\xb0\x01\n" +
-	"\ttictactoe\x125\n" +
+	"\x05board\x18\x02 \x03(\tR\x05board2\xc8\x02\n" +
+	"\tTictactoe\x12e\n" +
 	"\n" +
-	"CreateGame\x12\x12.CreateGameRequest\x1a\x13.CreateGameResponse\x12/\n" +
-	"\bMakeMove\x12\x10.MakeMoveRequest\x1a\x11.MakeMoveResponse\x12;\n" +
-	"\fGetGameState\x12\x14.GetGameStateRequest\x1a\x15.GetGameStateResponseB\"Z github.com/MustangThumbi/backendb\x06proto3"
+	"CreateGame\x12\x1c.tictactoe.CreateGameRequest\x1a\x1d.tictactoe.CreateGameResponse\"\x1a\x82\xd3\xe4\x93\x02\x14:\x01*\"\x0f/v1/create-game\x12]\n" +
+	"\bMakeMove\x12\x1a.tictactoe.MakeMoveRequest\x1a\x1b.tictactoe.MakeMoveResponse\"\x18\x82\xd3\xe4\x93\x02\x12:\x01*\"\r/v1/make-move\x12u\n" +
+	"\fGetGameState\x12\x1e.tictactoe.GetGameStateRequest\x1a\x1f.tictactoe.GetGameStateResponse\"$\x82\xd3\xe4\x93\x02\x1e\x12\x1c/v1/get-game-state/{game_id}B7Z5github.com/MustangThumbi/tictactoe/genproto/tictactoeb\x06proto3"
 
 var (
-	file_tictactoe_proto_rawDescOnce sync.Once
-	file_tictactoe_proto_rawDescData []byte
+	file_proto_tictactoe_proto_rawDescOnce sync.Once
+	file_proto_tictactoe_proto_rawDescData []byte
 )
 
-func file_tictactoe_proto_rawDescGZIP() []byte {
-	file_tictactoe_proto_rawDescOnce.Do(func() {
-		file_tictactoe_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_tictactoe_proto_rawDesc), len(file_tictactoe_proto_rawDesc)))
+func file_proto_tictactoe_proto_rawDescGZIP() []byte {
+	file_proto_tictactoe_proto_rawDescOnce.Do(func() {
+		file_proto_tictactoe_proto_rawDescData = protoimpl.X.CompressGZIP(unsafe.Slice(unsafe.StringData(file_proto_tictactoe_proto_rawDesc), len(file_proto_tictactoe_proto_rawDesc)))
 	})
-	return file_tictactoe_proto_rawDescData
+	return file_proto_tictactoe_proto_rawDescData
 }
 
-var file_tictactoe_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
-var file_tictactoe_proto_goTypes = []any{
-	(*CreateGameRequest)(nil),    // 0: CreateGameRequest
-	(*CreateGameResponse)(nil),   // 1: CreateGameResponse
-	(*MakeMoveRequest)(nil),      // 2: MakeMoveRequest
-	(*MakeMoveResponse)(nil),     // 3: MakeMoveResponse
-	(*GetGameStateRequest)(nil),  // 4: GetGameStateRequest
-	(*GetGameStateResponse)(nil), // 5: GetGameStateResponse
+var file_proto_tictactoe_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_proto_tictactoe_proto_goTypes = []any{
+	(*CreateGameRequest)(nil),    // 0: tictactoe.CreateGameRequest
+	(*CreateGameResponse)(nil),   // 1: tictactoe.CreateGameResponse
+	(*MakeMoveRequest)(nil),      // 2: tictactoe.MakeMoveRequest
+	(*MakeMoveResponse)(nil),     // 3: tictactoe.MakeMoveResponse
+	(*GetGameStateRequest)(nil),  // 4: tictactoe.GetGameStateRequest
+	(*GetGameStateResponse)(nil), // 5: tictactoe.GetGameStateResponse
 }
-var file_tictactoe_proto_depIdxs = []int32{
-	0, // 0: tictactoe.CreateGame:input_type -> CreateGameRequest
-	2, // 1: tictactoe.MakeMove:input_type -> MakeMoveRequest
-	4, // 2: tictactoe.GetGameState:input_type -> GetGameStateRequest
-	1, // 3: tictactoe.CreateGame:output_type -> CreateGameResponse
-	3, // 4: tictactoe.MakeMove:output_type -> MakeMoveResponse
-	5, // 5: tictactoe.GetGameState:output_type -> GetGameStateResponse
+var file_proto_tictactoe_proto_depIdxs = []int32{
+	0, // 0: tictactoe.Tictactoe.CreateGame:input_type -> tictactoe.CreateGameRequest
+	2, // 1: tictactoe.Tictactoe.MakeMove:input_type -> tictactoe.MakeMoveRequest
+	4, // 2: tictactoe.Tictactoe.GetGameState:input_type -> tictactoe.GetGameStateRequest
+	1, // 3: tictactoe.Tictactoe.CreateGame:output_type -> tictactoe.CreateGameResponse
+	3, // 4: tictactoe.Tictactoe.MakeMove:output_type -> tictactoe.MakeMoveResponse
+	5, // 5: tictactoe.Tictactoe.GetGameState:output_type -> tictactoe.GetGameStateResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -397,26 +398,26 @@ var file_tictactoe_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for field type_name
 }
 
-func init() { file_tictactoe_proto_init() }
-func file_tictactoe_proto_init() {
-	if File_tictactoe_proto != nil {
+func init() { file_proto_tictactoe_proto_init() }
+func file_proto_tictactoe_proto_init() {
+	if File_proto_tictactoe_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: unsafe.Slice(unsafe.StringData(file_tictactoe_proto_rawDesc), len(file_tictactoe_proto_rawDesc)),
+			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_tictactoe_proto_rawDesc), len(file_proto_tictactoe_proto_rawDesc)),
 			NumEnums:      0,
 			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_tictactoe_proto_goTypes,
-		DependencyIndexes: file_tictactoe_proto_depIdxs,
-		MessageInfos:      file_tictactoe_proto_msgTypes,
+		GoTypes:           file_proto_tictactoe_proto_goTypes,
+		DependencyIndexes: file_proto_tictactoe_proto_depIdxs,
+		MessageInfos:      file_proto_tictactoe_proto_msgTypes,
 	}.Build()
-	File_tictactoe_proto = out.File
-	file_tictactoe_proto_goTypes = nil
-	file_tictactoe_proto_depIdxs = nil
+	File_proto_tictactoe_proto = out.File
+	file_proto_tictactoe_proto_goTypes = nil
+	file_proto_tictactoe_proto_depIdxs = nil
 }
