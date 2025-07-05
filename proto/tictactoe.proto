@@ -1,35 +1,58 @@
-syntax="proto3";
+syntax = "proto3";
+package tictactoe;
 
-option go_package = "github.com/MustangThumbi/backend";
+option go_package = "github.com/MustangThumbi/tictactoe/genproto/tictactoe";
 
-service tictactoe {
-  rpc CreateGame (CreateGameRequest) returns (CreateGameResponse);
-  rpc MakeMove (MakeMoveRequest) returns (MakeMoveResponse);
-  rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse);
+import "google/api/annotations.proto";
+
+
+service Tictactoe {
+  rpc CreateGame (CreateGameRequest) returns (CreateGameResponse) {
+    option (google.api.http) = {
+      post: "/v1/create-game"
+      body: "*"
+    };
+  }
+  rpc MakeMove (MakeMoveRequest) returns (MakeMoveResponse) {
+    option (google.api.http) = {
+      post: "/v1/make-move"
+      body: "*"
+    };
+  }
+  rpc GetGameState (GetGameStateRequest) returns (GetGameStateResponse) {
+    option (google.api.http) = {
+      get: "/v1/get-game-state/{game_id}"
+    };
+  }
 }
+
 
 message CreateGameRequest {
   string player_x = 1;
-  string player_o= 2;
+  string player_o = 2;
 }
+
 message CreateGameResponse {
   string game_id = 1;
 }
+
 message MakeMoveRequest {
   string game_id = 1;
   string player = 2; // "X" or "O"
   int32 row = 3;
   int32 col = 4;
 }
+
 message MakeMoveResponse {
-    string status = 1; // "success" or "error"
-    repeated string board = 2; // flat ["", "", "", "", "", "", "", "", ""]
+  string status = 1; // "success", "error", "ongoing", "X_wins", "O_wins", "draw"
+  repeated string board = 2; // flat ["", "", "", "", "", "", "", "", ""]
 }
+
 message GetGameStateRequest {
   string game_id = 1;
 }
+
 message GetGameStateResponse {
-  string status = 1; 
-  repeated string board = 2; 
+  string status = 1; // "ongoing", "X_wins", "O_wins", "draw"
+  repeated string board = 2;
 }
-   

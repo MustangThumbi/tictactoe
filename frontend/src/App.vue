@@ -1,11 +1,11 @@
 <template>
   <div class="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-    <h1 class="text-5xl text-red-500 font-bold mb-4">TicTacToe</h1>
+    <h1 class="text-5xl font-bold mb-4">TicTacToe</h1>
     <div class="grid grid-cols-3 gap-2">
       <button
         v-for="(cell, index) in board"
         :key="index"
-        class="w-20 h-20 text-3xl bg-red shadow rounded flex items-center justify-center"
+        class="w-20 h-20 text-3xl bg-white shadow rounded flex items-center justify-center"
         @click="makeMove(index)"
       >
         {{ cell }}
@@ -27,7 +27,7 @@ const currentPlayer = ref('X')
 
 const newGame = async () => {
   try {
-    const res = await axios.post('http://localhost:8080/create-game', {
+    const res = await axios.post('http://localhost:50051/create-game', {
       player_x: 'Player X',
       player_o: 'Player O',
     })
@@ -49,7 +49,7 @@ const makeMove = async (index) => {
   const row = Math.floor(index / 3)
   const col = index % 3
   try {
-    const res = await axios.post('http://localhost:8080/make-move', {
+    const res = await axios.post('http://localhost:50051/make-move', {
       game_id: gameId.value,
       player: currentPlayer.value,
       row,
@@ -70,5 +70,3 @@ const makeMove = async (index) => {
   }
 }
 </script>
-
-
